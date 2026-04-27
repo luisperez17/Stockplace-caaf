@@ -1,7 +1,7 @@
 // To customize your Storybook theme, remove the following line and uncomment the code below.
 const storybookTheme = {};
 
-// import { create } from '@storybook/theming';
+// import { create } from 'storybook/theming';
 // const storybookTheme = create({
 //   base: 'dark',
 
