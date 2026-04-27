@@ -1,0 +1,11 @@
+{
+  "project": {
+    "platform": "drupal",
+    "name": "caaf",
+    "machineName": "caaf",
+    "singleDirectoryComponents": true
+  },
+  "starter": {
+    "repository": "https://github.com/emulsify-ds/emulsify-drupal.git"
+  }
+}
