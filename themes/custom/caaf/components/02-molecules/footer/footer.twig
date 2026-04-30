@@ -1,0 +1,37 @@
+<footer class="footer">
+
+	<div class="footer__top">
+		<img src="{{ logos }}" alt="MinCIT" class="footer__logo">
+	</div>
+
+	<div class="footer__container">
+		<div class="footer__content">
+			<div class="footer__block footer__block--contact">
+				{{ contact.content|raw }}
+
+				<div class="footer__social">
+					{% for item in contact.social %}
+						<a href="{{ item.url }}" class="footer__social-link">
+							<img src="{{ item.icon }}" alt="{{ item.name }}">
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="footer__block">
+				{{ axes.content|raw }}
+			</div>
+
+			<div class="footer__block">
+				{{ links.content|raw }}
+			</div>
+		</div>
+	</div>
+
+	<div class="footer__bottom">
+		<p class="footer__copyright">
+			{{ copyright }}
+		</p>
+	</div>
+
+</footer>
