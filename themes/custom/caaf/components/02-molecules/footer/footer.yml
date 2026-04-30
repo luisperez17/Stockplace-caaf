@@ -1,0 +1,43 @@
+logos: "https://i.postimg.cc/Wzfzp4pH/Object.png"
+
+contact:
+  content: |
+    <h2>LÍNEAS DE ATENCIÓN</h2>
+    <p>Calle 28 No 13A - 15 Piso 36-36</p>
+    <p>Bogotá - Colombia</p>
+    <p> +57 601 5600100</p>
+    <p> +57 601 5600104</p>
+    <p>Lun - Vie 8:30 A.M. - 5:30 P.M.</p>
+  social:
+    - name: "facebook"
+      icon: "https://i.postimg.cc/RZcd2hBK/facebook-(1).png"
+      url: "#"
+    - name: "x"
+      icon: "https://i.postimg.cc/vTfXMZVk/logotipos.png"
+      url: "#"
+    - name: "instagram"
+      icon: "https://i.postimg.cc/y8vj75DB/logotipo-de-instagram.png"
+      url: "#"
+    - name: "youtube"
+      icon: "https://i.postimg.cc/Hs1BzbGn/social.png"
+      url: "#"
+
+axes:
+  content: |
+    <h2>NUESTROS EJES</h2>
+      <p>Procolombia</p>
+      <p>Inversión</p>
+      <p>Exportaciones</p>
+      <p>Turismo</p>
+      <p>Marca País</p>
+
+links:
+  content: |
+    <h2>ENLACES DE INTERÉS</h2>
+      <p>Servicios al Ciudadano</p>
+      <p>Informe de sostenibilidad</p>
+      <p>Preguntas frecuentes</p>
+      <p>PQRS</p>
+      <p>Contacto</p>
+
+copyright: "Copyright © 2026. Términos y Condiciones - Lea sobre los cambios en nuestra Política de Tratamiento y Privacidad."
