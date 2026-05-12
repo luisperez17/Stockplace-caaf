@@ -1,0 +1,9 @@
+eyebrow: "Sobre nosotros"
+title: "Acerca de ProColombia StockPlace"
+body: |
+  <p>StockPlace es una plataforma de contenido premium de Colombia, creada para apoyar la promoción internacional del país. Está dirigida a entidades gubernamentales aliadas a ProColombia ofreciéndoles contenido que resalta la riqueza cultural, natural y económica de la nación.</p>
+  <p>A través de StockPlace, los usuarios pueden encontrar material audiovisual que conecta sus proyectos con la Marca País, las exportaciones, el turismo internacional y la inversión extranjera en Colombia.</p>
+image:
+  src: "https://media.gq.com.mx/photos/68a36315eb02e01a15ddf6da/16:9/w_2560%2Cc_limit/Ciudad_de_Bangkok_Tailandia%2520(1).jpg"
+  alt: "Vista panorámica de Bogotá con montañas al fondo."
+  loading: "lazy"

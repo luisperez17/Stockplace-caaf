@@ -1,0 +1,32 @@
+<section class="about-stockplace" aria-labelledby="{{ title_id|default('about-stockplace-title') }}">
+  <div class="about-stockplace__inner">
+    <div class="about-stockplace__content">
+      {% if eyebrow %}
+        <span class="about-stockplace__eyebrow">{{ eyebrow }}</span>
+      {% endif %}
+
+      {% if title %}
+        <h2 class="about-stockplace__title" id="{{ title_id|default('about-stockplace-title') }}">
+          {{ title }}
+        </h2>
+      {% endif %}
+
+      {% if body %}
+        <div class="about-stockplace__body">
+          {{ body|raw }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if image.src %}
+      <div class="about-stockplace__media">
+        <img
+          class="about-stockplace__image"
+          src="{{ image.src }}"
+          alt="{{ image.alt }}"
+          loading="{{ image.loading|default('lazy') }}"
+        >
+      </div>
+    {% endif %}
+  </div>
+</section>

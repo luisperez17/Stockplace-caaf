@@ -1,0 +1,142 @@
+.about-stockplace {
+  background: #f9fafb;
+  color: #202124;
+  font-family: "Poppins", "Roboto", sans-serif;
+  padding: 10px 20px;
+}
+
+.about-stockplace__inner {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.about-stockplace__content {
+  max-width: 430px;
+}
+
+.about-stockplace__eyebrow {
+  background: #548cc91a;
+  border-radius: 999px;
+  color: #548cc9;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 8px;
+  padding: 7px 16px;
+}
+
+.about-stockplace__title {
+  color: #202124;
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.18;
+  margin: 0 0 6px;
+}
+
+.about-stockplace__body {
+  color: #4a5565;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 29px;
+}
+
+.about-stockplace__body p {
+  margin: 0;
+}
+
+.about-stockplace__body p + p {
+  margin-top: 24px;
+}
+
+.about-stockplace__media {
+  margin-top: 12px;
+}
+
+.about-stockplace__image {
+  border-radius: 9px;
+  box-shadow: 0 20px 30px rgba(31, 49, 73, 0.18);
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .about-stockplace {
+    padding: 74px 40px;
+  }
+
+  .about-stockplace__inner {
+    align-items: center;
+    display: grid;
+    gap: 64px;
+    grid-template-columns: minmax(320px, 400px) minmax(360px, 1fr);
+    max-width: 900px;
+  }
+
+  .about-stockplace__title {
+    font-size: 28px;
+    line-height: 1.06;
+    margin-bottom: 14px;
+  }
+
+  .about-stockplace__body {
+    font-size: 15px;
+    line-height: 1.46;
+  }
+
+  .about-stockplace__media {
+    margin-top: 0;
+  }
+
+  .about-stockplace__image {
+    aspect-ratio: 443 / 248;
+    height: 248px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-stockplace {
+    padding: 30px 0px;
+  }
+
+  .about-stockplace__inner {
+    gap: 42px;
+  }
+
+  .about-stockplace__image {
+    width: 500px;
+    height: auto;
+  }
+
+  .about-stockplace__inner {
+    align-items: center;
+    display: grid;
+    gap: 0px;
+    grid-template-columns: 50% 50%;
+    max-width: 100%;
+    padding: 0px 104px;
+  }
+
+  .about-stockplace__title {
+    font-size: 40px;
+  }
+
+  .about-stockplace__body {
+    font-size: 18px;
+    line-height: 29px;
+  }
+
+  .about-stockplace__content {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1440px) {
+  .about-stockplace__image {
+    width: 608px;
+    height: auto;
+  }
+}
