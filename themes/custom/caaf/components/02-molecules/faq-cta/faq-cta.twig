@@ -1,0 +1,28 @@
+<section class="faq-cta" aria-labelledby="{{ title_id|default('faq-cta-title') }}">
+  <div class="faq-cta__inner">
+    <div class="faq-cta__content">
+      <div class="faq-cta__icon" aria-hidden="true">
+        <span class="faq-cta__icon-mark">?</span>
+      </div>
+
+      <div class="faq-cta__copy">
+        {% if title %}
+          <h2 class="faq-cta__title" id="{{ title_id|default('faq-cta-title') }}">
+            {{ title }}
+          </h2>
+        {% endif %}
+
+        {% if text %}
+          <p class="faq-cta__text">{{ text }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if link.url and link.text %}
+      <a class="faq-cta__link" href="{{ link.url }}">
+        <span>{{ link.text }}</span>
+        <span class="faq-cta__link-icon" aria-hidden="true"></span>
+      </a>
+    {% endif %}
+  </div>
+</section>
