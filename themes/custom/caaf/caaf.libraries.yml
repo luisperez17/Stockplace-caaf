@@ -2,6 +2,7 @@ global:
   version: VERSION
   css:
     theme:
+      assets/fonts/fonts.css: {}
       dist/global/foundation.css: { minified: true }
       dist/global/layout.css: { minified: true }
       dist/global/tokens.css: { minified: true }
