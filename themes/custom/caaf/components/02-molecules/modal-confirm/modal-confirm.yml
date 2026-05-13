@@ -1,0 +1,12 @@
+title: "Inicia sesión para continuar"
+text: "Para descargar este recurso debes iniciar sesión. Si aún no tienes cuenta, contacta a un asesor para solicitar acceso."
+icon_src: "https://i.postimg.cc/R0GqkMsj/fi-7304873.png"
+is_open: true
+close_button:
+  label: "Cerrar modal"
+primary_button:
+  text: "Iniciar sesión"
+  url: "#"
+secondary_button:
+  text: "Contactar asesor"
+  url: "#"

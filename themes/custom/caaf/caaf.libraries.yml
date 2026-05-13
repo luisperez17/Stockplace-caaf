@@ -6,3 +6,14 @@ global:
       dist/global/foundation.css: { minified: true }
       dist/global/layout.css: { minified: true }
       dist/global/tokens.css: { minified: true }
+
+modal-confirm:
+  version: VERSION
+  css:
+    theme:
+      components/02-molecules/modal-confirm/modal-confirm.css: {}
+  js:
+    components/02-molecules/modal-confirm/modal-confirm.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
