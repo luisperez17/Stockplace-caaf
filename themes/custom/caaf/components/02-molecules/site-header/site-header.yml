@@ -1,0 +1,32 @@
+logo:
+  src: "https://i.postimg.cc/0jZXptYd/Container.png"
+  alt: "ProColombia StockPlace"
+  label: "Ir al inicio de ProColombia StockPlace"
+  url: "#"
+nav_label: "Navegación principal"
+menu_label: "Abrir menú"
+is_logged_in: false
+home_link:
+  text: "Inicio"
+  url: "#"
+  active: true
+login_link:
+  text: "Iniciar sesión"
+  url: "#"
+logged_in_links:
+  - text: "Inicio"
+    url: "#"
+    active: true
+  - text: "Mi cuenta"
+    url: "#"
+  - text: ""
+    url: "#"
+    icon: "download"
+    icon_src: "https://i.postimg.cc/g0pfmxK9/path824.png"
+    badge: "1"
+  - text: ""
+    url: "#"
+    icon: "heart"
+    icon_src: "https://i.postimg.cc/kGLpZG5f/Vector-(1).png"
+  - text: "Cerrar sesión"
+    url: "#"
