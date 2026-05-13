@@ -1,0 +1,39 @@
+{% set modal_id = modal_id|default('modal-confirm') %}
+
+<div class="modal-confirm{% if is_open %} is-open{% endif %}" id="{{ modal_id }}" data-modal-confirm role="presentation"{% if not is_open %} hidden{% endif %}>
+  <div class="modal-confirm__dialog" role="dialog" aria-modal="true" aria-labelledby="{{ title_id|default('modal-confirm-title') }}" tabindex="-1">
+    {% if close_button %}
+      <button class="modal-confirm__close" type="button" aria-label="{{ close_button.label|default('Cerrar modal') }}" data-modal-confirm-close>
+        <span class="modal-confirm__close-icon" aria-hidden="true"></span>
+      </button>
+    {% endif %}
+
+    {% if icon_src %}
+      <img class="modal-confirm__icon-image" src="{{ icon_src }}" alt="" aria-hidden="true">
+    {% else %}
+      <span class="modal-confirm__icon" aria-hidden="true"></span>
+    {% endif %}
+
+    {% if title %}
+      <h2 class="modal-confirm__title" id="{{ title_id|default('modal-confirm-title') }}">
+        {{ title }}
+      </h2>
+    {% endif %}
+
+    {% if text %}
+      <p class="modal-confirm__text">{{ text }}</p>
+    {% endif %}
+
+    {% if primary_button.url and primary_button.text %}
+      <a class="modal-confirm__button modal-confirm__button--primary" href="{{ primary_button.url }}">
+        {{ primary_button.text }}
+      </a>
+    {% endif %}
+
+    {% if secondary_button.url and secondary_button.text %}
+      <a class="modal-confirm__button modal-confirm__button--secondary" href="{{ secondary_button.url }}">
+        {{ secondary_button.text }}
+      </a>
+    {% endif %}
+  </div>
+</div>

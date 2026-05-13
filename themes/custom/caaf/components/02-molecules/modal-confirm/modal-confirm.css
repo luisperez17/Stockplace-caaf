@@ -1,0 +1,229 @@
+.modal-confirm {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.48);
+  box-sizing: border-box;
+  color: #242424;
+  display: none;
+  font-family: "Poppins", "Roboto", sans-serif;
+  inset: 0;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 24px 16px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+.modal-confirm.is-open {
+  display: flex;
+}
+
+.modal-confirm *,
+.modal-confirm *::before,
+.modal-confirm *::after {
+  box-sizing: border-box;
+}
+
+.modal-confirm__dialog {
+  align-items: center;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  max-width: 720px;
+  min-height: 256px;
+  padding: 34px 24px 29px;
+  position: relative;
+  text-align: center;
+  width: min(100%, 720px);
+  border-radius: 20px;
+}
+
+.modal-confirm__close {
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid #464646;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  height: 26px;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 26px;
+}
+
+.modal-confirm__close-icon {
+  display: block;
+  height: 9px;
+  position: relative;
+  width: 9px;
+}
+
+.modal-confirm__close-icon::before,
+.modal-confirm__close-icon::after {
+  background: #555555;
+  border-radius: 1px;
+  content: "";
+  height: 2px;
+  left: 0;
+  position: absolute;
+  top: 4px;
+  width: 9px;
+}
+
+.modal-confirm__close-icon::before {
+  transform: rotate(45deg);
+}
+
+.modal-confirm__close-icon::after {
+  transform: rotate(-45deg);
+}
+
+.modal-confirm__icon-image {
+  display: block;
+  height: 60px;
+  margin: 0 0 18px;
+  object-fit: contain;
+  width: 60px;
+}
+
+.modal-confirm__icon {
+  border: 6px solid #548cc9;
+  border-left-color: transparent;
+  border-radius: 50%;
+  display: block;
+  height: 64px;
+  margin: 0 0 18px;
+  position: relative;
+  width: 64px;
+}
+
+.modal-confirm__icon::before {
+  background: #548cc9;
+  border-radius: 2px;
+  content: "";
+  height: 6px;
+  left: 13px;
+  position: absolute;
+  top: 26px;
+  width: 42px;
+}
+
+.modal-confirm__icon::after {
+  border-right: 6px solid #548cc9;
+  border-top: 6px solid #548cc9;
+  content: "";
+  height: 21px;
+  position: absolute;
+  right: 9px;
+  top: 18px;
+  transform: rotate(45deg);
+  width: 21px;
+}
+
+.modal-confirm__title {
+  color: #1a1a1a;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+
+.modal-confirm__text {
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.35;
+  margin: 0 0 21px;
+  max-width: 460px;
+}
+
+.modal-confirm__button {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.2;
+  min-height: 36px;
+  padding: 0 20px;
+  text-decoration: none;
+  width: min(100%, 500px);
+  font-weight: 300;
+}
+
+.modal-confirm__button + .modal-confirm__button {
+  margin-top: 14px;
+}
+
+.modal-confirm__button--primary {
+  background: #548cc9;
+  border: 1px solid #548cc9;
+  color: #ffffff;
+}
+
+.modal-confirm__button--secondary {
+  background: #ffffff;
+  border: 2px solid #f74674;
+  color: #f74674;
+}
+
+@media (min-width: 768px) {
+  .modal-confirm {
+    padding: 32px;
+  }
+
+  .modal-confirm__dialog {
+    min-height: 446px;
+    width: 720px;
+    padding: 47px 54px 32px;
+    border-radius: 5px;
+  }
+
+  .modal-confirm__icon-image,
+  .modal-confirm__icon {
+    height: 120px;
+    width: 120px;
+    margin-bottom: 21px;
+  }
+
+  .modal-confirm__icon {
+    border-width: 7px;
+  }
+
+  .modal-confirm__icon::before {
+    height: 7px;
+    left: 19px;
+    top: 39px;
+    width: 60px;
+  }
+
+  .modal-confirm__icon::after {
+    border-right-width: 7px;
+    border-top-width: 7px;
+    height: 30px;
+    right: 15px;
+    top: 28px;
+    width: 30px;
+  }
+
+  .modal-confirm__title {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+
+  .modal-confirm__text {
+    font-size: 16px;
+    margin-bottom: 26px;
+    max-width: 592px;
+  }
+
+  .modal-confirm__button {
+    min-height: 47px;
+    width: min(100%, 592px);
+  }
+}
