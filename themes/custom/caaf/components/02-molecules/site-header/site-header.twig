@@ -1,0 +1,57 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    {% if logo.src %}
+      <a class="site-header__brand" href="{{ logo.url|default('/') }}" aria-label="{{ logo.label|default('ProColombia StockPlace') }}">
+        <img class="site-header__logo" src="{{ logo.src }}" alt="{{ logo.alt|default('ProColombia StockPlace') }}">
+      </a>
+    {% endif %}
+
+    {% if is_logged_in %}
+      <input
+        class="site-header__menu-toggle"
+        type="checkbox"
+        id="{{ menu_id|default('site-header-menu') }}"
+        aria-label="{{ menu_label|default('Abrir menú') }}"
+      >
+
+      <nav class="site-header__nav site-header__nav--authenticated" aria-label="{{ nav_label|default('Navegación principal') }}">
+        {% for item in logged_in_links %}
+          <a class="site-header__nav-link{% if item.active %} is-active{% endif %}{% if item.icon %} site-header__nav-link--icon{% endif %}" href="{{ item.url }}">
+            {% if item.icon_src %}
+              {% set badge_count = item.badge|default(0) %}
+              <span class="site-header__icon" aria-hidden="true">
+                <img class="site-header__icon-image" src="{{ item.icon_src }}" alt="">
+                {% if badge_count > 0 %}
+                  <span class="site-header__badge">{{ badge_count }}</span>
+                {% endif %}
+              </span>
+            {% endif %}
+            {% if item.text %}
+              <span>{{ item.text }}</span>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </nav>
+
+      <label class="site-header__menu-button" for="{{ menu_id|default('site-header-menu') }}" aria-hidden="true">
+        <span class="site-header__menu-line"></span>
+        <span class="site-header__menu-line"></span>
+        <span class="site-header__menu-line"></span>
+      </label>
+    {% else %}
+      <nav class="site-header__nav site-header__nav--anonymous" aria-label="{{ nav_label|default('Navegación principal') }}">
+        {% if home_link %}
+          <a class="site-header__home-link{% if home_link.active %} is-active{% endif %}" href="{{ home_link.url }}">
+            {{ home_link.text }}
+          </a>
+        {% endif %}
+
+        {% if login_link %}
+          <a class="site-header__login-link" href="{{ login_link.url }}">
+            {{ login_link.text }}
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
+  </div>
+</header>
