@@ -1,0 +1,152 @@
+<section
+  class="personalized-advice"
+  style="--personalized-advice-bg-mobile: url('{{ background.mobile }}'); --personalized-advice-bg-desktop: url('{{ background.desktop|default(background.mobile) }}');"
+  aria-labelledby="{{ title_id|default('personalized-advice-title') }}"
+>
+  <div class="personalized-advice__inner">
+    <form
+      class="personalized-advice__panel"
+      action="{{ form_action|default('#') }}"
+      method="{{ form_method|default('post') }}"
+      data-personalized-advice
+      data-message-required="{{ validation.required|default('Este campo es obligatorio.') }}"
+      data-message-email="{{ validation.email|default('Ingresa un correo válido.') }}"
+      data-message-select="{{ validation.select|default('Selecciona una opción.') }}"
+      data-message-terms="{{ validation.terms|default('Debes aceptar los términos y condiciones.') }}"
+      novalidate
+    >
+      {% if title %}
+        <h2 class="personalized-advice__title" id="{{ title_id|default('personalized-advice-title') }}">
+          {{ title }}
+        </h2>
+      {% endif %}
+
+      {% if description %}
+        <p class="personalized-advice__description">{{ description }}</p>
+      {% endif %}
+
+      <div class="personalized-advice__fields">
+        {% for field in fields %}
+          {% set field_id = field.id|default(field.name) %}
+          {% set message_id = field_id ~ '-message' %}
+          <div class="personalized-advice__field personalized-advice__field--{{ field.type|default('text') }}" data-personalized-advice-field>
+            <label class="personalized-advice__label" for="{{ field_id }}">
+              <span class="personalized-advice__label-icon personalized-advice__label-icon--{{ field.icon }}" aria-hidden="true">
+                {% if field.icon_src %}
+                  <img src="{{ field.icon_src }}" alt="" loading="lazy">
+                {% elseif field.icon == 'user' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 21a7.5 7.5 0 0 1 15 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif field.icon == 'mail' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M3 6.5h18v12H3v-12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3.8 7.4 8.2 6.2 8.2-6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {% elseif field.icon == 'phone' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M6.9 3.8 9.5 7c.4.5.3 1.2-.1 1.6l-1.2 1.1a12.5 12.5 0 0 0 6.1 6.1l1.1-1.2c.4-.5 1.1-.5 1.6-.1l3.2 2.6c.5.4.6 1.1.3 1.6l-1.4 2.2c-.4.6-1 .8-1.7.7A18.4 18.4 0 0 1 3.4 7.7c-.1-.7.2-1.4.7-1.7l2.2-1.4c.5-.3 1.2-.2 1.6.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                {% elseif field.icon == 'company' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M4 21V5.5c0-.8.7-1.5 1.5-1.5h8c.8 0 1.5.7 1.5 1.5V21M15 9h4.5c.8 0 1.5.7 1.5 1.5V21M2.5 21h19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8h3M8 12h3M8 16h3M18 13h1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif field.icon == 'search' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="m4 20 5.3-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14.5 5.1a5.7 5.7 0 1 1 5.4 5.4M15.8 3.5h4.4c.7 0 1.3.6 1.3 1.3v3.7c0 .7-.6 1.3-1.3 1.3h-1.4l-1.7 1.6V9.8h-1.3c-.7 0-1.3-.6-1.3-1.3V4.8c0-.7.6-1.3 1.3-1.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17.2 6.1h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M3.5 4.5h18v13h-14L3.5 21V4.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 8.5h11M7 12h11M7 15.5h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% endif %}
+              </span>
+              <span>{{ field.label }}{% if field.required %} <span aria-hidden="true">*</span>{% endif %}</span>
+            </label>
+
+            {% if field.type == 'textarea' %}
+              <textarea
+                class="personalized-advice__control personalized-advice__textarea"
+                id="{{ field_id }}"
+                name="{{ field.name }}"
+                placeholder="{{ field.placeholder }}"
+                aria-describedby="{{ message_id }}"
+                data-personalized-advice-input
+                {% if field.validation_message %}data-message-pattern="{{ field.validation_message }}"{% endif %}
+                {% if field.minlength_message %}data-message-minlength="{{ field.minlength_message }}"{% endif %}
+                {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %}
+                {% if field.minlength %}minlength="{{ field.minlength }}"{% endif %}
+                {% if field.maxlength %}maxlength="{{ field.maxlength }}"{% endif %}
+                {% if field.required %}required{% endif %}
+              ></textarea>
+            {% elseif field.type == 'select' %}
+              <div class="personalized-advice__select-wrap">
+                <select
+                  class="personalized-advice__control personalized-advice__select"
+                  id="{{ field_id }}"
+                  name="{{ field.name }}"
+                  aria-describedby="{{ message_id }}"
+                  data-personalized-advice-input
+                  {% if field.validation_message %}data-message-pattern="{{ field.validation_message }}"{% endif %}
+                  {% if field.required %}required{% endif %}
+                >
+                  {% if field.placeholder %}
+                    <option value="" selected disabled hidden>{{ field.placeholder }}</option>
+                  {% endif %}
+                  {% for option in field.options %}
+                    <option value="{{ option.value }}">{{ option.label }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% elseif field.type == 'phone' %}
+              <div class="personalized-advice__phone">
+                {% if field.prefix_options %}
+                  <div class="personalized-advice__prefix-wrap">
+                    <select class="personalized-advice__control personalized-advice__prefix" name="{{ field.prefix_name|default(field.name ~ '_prefix') }}" aria-label="{{ field.prefix_label|default('Indicativo') }}">
+                      {% for option in field.prefix_options %}
+                        <option value="{{ option.value }}">{{ option.label }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endif %}
+                <input
+                  class="personalized-advice__control"
+                  id="{{ field_id }}"
+                  name="{{ field.name }}"
+                  type="tel"
+                  placeholder="{{ field.placeholder }}"
+                  aria-describedby="{{ message_id }}"
+                  data-personalized-advice-input
+                  data-digits-only
+                  {% if field.validation_message %}data-message-pattern="{{ field.validation_message }}"{% endif %}
+                  {% if field.minlength_message %}data-message-minlength="{{ field.minlength_message }}"{% endif %}
+                  {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %}
+                  {% if field.inputmode %}inputmode="{{ field.inputmode }}"{% endif %}
+                  {% if field.pattern %}pattern="{{ field.pattern }}"{% endif %}
+                  {% if field.minlength %}minlength="{{ field.minlength }}"{% endif %}
+                  {% if field.maxlength %}maxlength="{{ field.maxlength }}"{% endif %}
+                  {% if field.required %}required{% endif %}
+                >
+              </div>
+            {% else %}
+              <input
+                class="personalized-advice__control"
+                id="{{ field_id }}"
+                name="{{ field.name }}"
+                type="{{ field.type|default('text') }}"
+                placeholder="{{ field.placeholder }}"
+                aria-describedby="{{ message_id }}"
+                data-personalized-advice-input
+                {% if field.validation_message %}data-message-pattern="{{ field.validation_message }}"{% endif %}
+                {% if field.minlength_message %}data-message-minlength="{{ field.minlength_message }}"{% endif %}
+                {% if field.autocomplete %}autocomplete="{{ field.autocomplete }}"{% endif %}
+                {% if field.inputmode %}inputmode="{{ field.inputmode }}"{% endif %}
+                {% if field.pattern %}pattern="{{ field.pattern }}"{% endif %}
+                {% if field.minlength %}minlength="{{ field.minlength }}"{% endif %}
+                {% if field.maxlength %}maxlength="{{ field.maxlength }}"{% endif %}
+                {% if field.required %}required{% endif %}
+              >
+            {% endif %}
+            <p class="personalized-advice__message" id="{{ message_id }}" data-personalized-advice-message>{% if field.help %}{{ field.help }}{% endif %}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <label class="personalized-advice__terms">
+        <input class="personalized-advice__checkbox" type="checkbox" name="{{ terms.name|default('terms') }}" checked data-personalized-advice-terms {% if terms.required %}required{% endif %}>
+        <span class="personalized-advice__check" aria-hidden="true"></span>
+        <span>{{ terms.text }} <a href="{{ terms.url|default('#') }}">{{ terms.link_text }}</a></span>
+      </label>
+      <p class="personalized-advice__message personalized-advice__message--terms" data-personalized-advice-terms-message></p>
+
+      <button class="personalized-advice__submit" type="submit">{{ submit_label }}</button>
+    </form>
+  </div>
+</section>
