@@ -1,0 +1,89 @@
+.file-comparison {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: "Poppins", "Roboto", sans-serif;
+  padding: 42px 14px 50px;
+}
+
+.file-comparison__inner {
+  margin: 0 auto;
+  max-width: 1180px;
+}
+
+.file-comparison__intro {
+  margin: 0 auto 24px;
+  max-width: 347px;
+  text-align: center;
+}
+
+.file-comparison__title {
+  color: #1a1a1a;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+
+.file-comparison__description {
+  color: #646464;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.file-comparison__cards {
+  align-items: start;
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .file-comparison {
+    padding: 70px 32px 76px;
+  }
+
+  .file-comparison__intro {
+    margin-bottom: 36px;
+    max-width: 760px;
+  }
+
+  .file-comparison__title {
+    font-size: 28px;
+  }
+
+  .file-comparison__description {
+    font-size: 16px;
+  }
+
+  .file-comparison__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .file-comparison__cards > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (min-width: 1180px) {
+  .file-comparison {
+    padding: 86px 40px 86px;
+  }
+
+  .file-comparison__title {
+    font-size: 32px;
+    margin: 0 0 22px;
+  }
+
+  .file-comparison__cards {
+    gap: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .file-comparison__cards > :last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}

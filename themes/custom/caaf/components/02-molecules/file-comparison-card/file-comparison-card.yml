@@ -1,0 +1,91 @@
+image_id: "image-123456"
+variant: "low"
+type: "Archivo baja"
+header_icon:
+  src: "/file-play.svg"
+  alt: ""
+title_label: "Titulo del archivo"
+title: "Palomas centro historico Cartagena"
+code_label: "Código del archivo"
+code: "123456"
+image:
+  src: "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=900&q=80"
+  alt: "Calle colonial con casas de colores en Cartagena."
+  loading: "lazy"
+specs:
+  - icon:
+      name: "size"
+      src: "https://i.postimg.cc/qqVyWymr/Icon-(1).png"
+      alt: ""
+      background: "#FFEDD4"
+    label: "Peso/Tamaño"
+    values:
+      - "1.41 MB"
+  - icon:
+      name: "duration"
+      src: "https://i.postimg.cc/SxT8kwTq/Icon-(2).png"
+      alt: ""
+      background: "#DBEAFE"
+    label: "Duración"
+    values:
+      - "0:01 s"
+  - icon:
+      name: "speed"
+      src: "https://i.postimg.cc/BZBjJrby/Icon-(3).png"
+      alt: ""
+      background: "#F3E8FF"
+    label: "Velocidad de datos"
+    values:
+      - "11.27 Mb/s"
+  - icon:
+      name: "container"
+      src: "https://i.postimg.cc/xCy1TmfH/Icon-(4).png"
+      alt: ""
+      background: "#DCFCE7"
+    label: "Contenedor"
+    values:
+      - "MP4"
+  - icon:
+      name: "codec"
+      src: "https://i.postimg.cc/GpvcqDsx/Icon-(5).png"
+      alt: ""
+      background: "#E0E7FF"
+    label: "Códec"
+    values:
+      - "H264/MPEG-4 AVC"
+  - icon:
+      name: "audio"
+      src: "https://i.postimg.cc/YCWkCF8K/Icon-(6).png"
+      alt: ""
+      background: "#FCE7F3"
+    label: "Canales de audio"
+    values:
+      - "Estéreo"
+      - "2 ch"
+  - icon:
+      name: "resolution"
+      src: "https://i.postimg.cc/GttnwT9K/Icon-(7).png"
+      alt: ""
+      background: "#FEF9C2"
+    label: "Resolución"
+    values:
+      - "1920 x 1080 px"
+  - icon:
+      name: "aspect"
+      src: "https://i.postimg.cc/dtzPp1FR/Icon-(8).png"
+      alt: ""
+      background: "#CEFAFE"
+    label: "Relación de aspecto"
+    values:
+      - "16:9"
+download:
+  label: "Descargar baja"
+  url: "#"
+  icon:
+    src: "/download-file.svg"
+    alt: ""
+add_to_list:
+  label: "Añadir a la lista de descargas"
+  icon:
+    src: "/bookmark-file.svg"
+    alt: ""

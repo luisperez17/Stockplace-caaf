@@ -1,0 +1,125 @@
+<article
+  class="file-comparison-card"
+  data-image-id="{{ image_id }}"
+  data-file-variant="{{ variant|default(type|lower|replace({' ': '-'})) }}"
+>
+  <header class="file-comparison-card__header">
+    <span class="file-comparison-card__header-icon" aria-hidden="true">
+      <img src="{{ header_icon.src|default('/file-play.svg') }}" alt="{{ header_icon.alt|default('') }}">
+    </span>
+    <h3 class="file-comparison-card__heading">{{ type }}</h3>
+  </header>
+
+  {% if image.src %}
+    <img
+      class="file-comparison-card__image"
+      src="{{ image.src }}"
+      alt="{{ image.alt }}"
+      loading="{{ image.loading|default('lazy') }}"
+      data-image-id="{{ image_id }}"
+    >
+  {% endif %}
+
+  <div class="file-comparison-card__body">
+    <div class="file-comparison-card__meta">
+      {% if title_label %}
+        <p class="file-comparison-card__label">{{ title_label }}</p>
+      {% endif %}
+      {% if title %}
+        <p class="file-comparison-card__text">{{ title }}</p>
+      {% endif %}
+      {% if code_label %}
+        <p class="file-comparison-card__label">{{ code_label }}</p>
+      {% endif %}
+      {% if code %}
+        <p class="file-comparison-card__text">{{ code }}</p>
+      {% endif %}
+    </div>
+
+    {% if specs %}
+      <dl class="file-comparison-card__specs">
+        {% for spec in specs %}
+          {% set icon_name = 'file' %}
+          {% if spec.icon.name is defined and spec.icon.name %}
+            {% set icon_name = spec.icon.name %}
+          {% elseif spec.icon is defined and spec.icon %}
+            {% set icon_name = spec.icon %}
+          {% endif %}
+          <div class="file-comparison-card__spec">
+            <dt>
+              <span
+                class="file-comparison-card__spec-icon file-comparison-card__spec-icon--{{ icon_name }}"
+                {% if spec.icon.background is defined and spec.icon.background %}
+                  style="{% if spec.icon.background is defined and spec.icon.background %}background-color: {{ spec.icon.background }};{% endif %}"
+                {% endif %}
+                aria-hidden="true"
+              >
+                {% if spec.icon.src is defined and spec.icon.src %}
+                  <img src="{{ spec.icon.src }}" alt="{{ spec.icon.alt|default('') }}">
+                {% elseif icon_name == 'duration' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><circle cx="12" cy="12" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v4l2.6 1.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif icon_name == 'speed' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M6 15a6 6 0 1 1 12 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="m12 15 3-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif icon_name == 'container' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="m12 4 6 3.3v7.4L12 18l-6-3.3V7.3L12 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m6.4 7.6 5.6 3 5.6-3M12 10.6V18" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                {% elseif icon_name == 'codec' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="m9 8-4 4 4 4M15 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {% elseif icon_name == 'audio' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M5 10v4h3l4 3V7l-4 3H5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15 9.5a4 4 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif icon_name == 'resolution' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M8 5H5v3M16 5h3v3M8 19H5v-3M16 19h3v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% elseif icon_name == 'aspect' %}
+                  <svg viewBox="0 0 24 24" focusable="false"><rect x="5" y="7" width="14" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 20h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24" focusable="false"><path d="M6 8.5h12v7H6v-7Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 8.5V6.75h8V8.5" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                {% endif %}
+              </span>
+              <span>{{ spec.label }}</span>
+            </dt>
+            <dd>
+              {% for value in spec.values %}
+                <span>{{ value }}</span>
+              {% endfor %}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endif %}
+
+    <div class="file-comparison-card__actions">
+      {% if download %}
+        <a
+          class="file-comparison-card__button file-comparison-card__button--primary"
+          href="{{ download.url|default('#') }}"
+          data-image-id="{{ image_id }}"
+          data-file-variant="{{ variant|default(type|lower|replace({' ': '-'})) }}"
+        >
+          <img
+            class="file-comparison-card__button-icon"
+            src="{{ download.icon.src|default('/download-file.svg') }}"
+            alt="{{ download.icon.alt|default('') }}"
+            aria-hidden="true"
+          >
+          <span>{{ download.label }}</span>
+        </a>
+      {% endif %}
+
+      {% if add_to_list %}
+        <button
+          class="file-comparison-card__button file-comparison-card__button--secondary"
+          type="button"
+          data-image-id="{{ image_id }}"
+          data-file-variant="{{ variant|default(type|lower|replace({' ': '-'})) }}"
+        >
+          <img
+            class="file-comparison-card__button-icon"
+            src="{{ add_to_list.icon.src|default('/bookmark-file.svg') }}"
+            alt="{{ add_to_list.icon.alt|default('') }}"
+            aria-hidden="true"
+          >
+          <span>{{ add_to_list.label }}</span>
+        </button>
+      {% endif %}
+    </div>
+  </div>
+</article>
