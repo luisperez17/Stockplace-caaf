@@ -1,0 +1,335 @@
+.personalized-advice {
+  background-image:
+    linear-gradient(rgba(23, 43, 58, 0.42), rgba(23, 43, 58, 0.42)),
+    var(--personalized-advice-bg-mobile);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #263544;
+  font-family: "Poppins", "Roboto", sans-serif;
+  padding: 45px 22px 44px;
+}
+
+.personalized-advice,
+.personalized-advice * {
+  box-sizing: border-box;
+}
+
+.personalized-advice__inner {
+  margin: 0 auto;
+  max-width: 393px;
+}
+
+.personalized-advice__panel {
+  background: #ffffff;
+  border-radius: 36px;
+  box-shadow: 0 20px 50px rgba(25, 38, 52, 0.18);
+  display: grid;
+  padding: 36px 22px 32px;
+}
+
+.personalized-advice__title {
+  color: #273848;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.28;
+  margin: 0 0 24px;
+  text-align: center;
+}
+
+.personalized-advice__description {
+  color: #4a5565;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.32;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.personalized-advice__fields {
+  display: grid;
+  gap: 24px;
+}
+
+.personalized-advice__field {
+  display: grid;
+  gap: 9px;
+}
+
+.personalized-advice__label {
+  align-items: center;
+  color: #273848;
+  display: inline-flex;
+  font-size: 14px;
+  font-weight: 500;
+  gap: 9px;
+  letter-spacing: 0;
+  line-height: 1.15;
+}
+
+.personalized-advice__label-icon {
+  color: #548cc9;
+  display: inline-flex;
+  flex: 0 0 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.personalized-advice__label-icon svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.personalized-advice__label-icon img {
+  display: block;
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.personalized-advice__control {
+  appearance: none;
+  background: #ffffff;
+  border: 1px solid #e0e5eb;
+  border-radius: 13px;
+  box-shadow: 0 1px 2px rgba(28, 43, 59, 0.03);
+  color: #263544;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  height: 48px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  outline: 0;
+  padding: 0 14px;
+  width: 100%;
+}
+
+.personalized-advice__control::placeholder {
+  color: #8c8c8c;
+  opacity: 1;
+}
+
+.personalized-advice__control:focus {
+  border-color: #548cc9;
+  box-shadow: 0 0 0 3px rgba(84, 140, 201, 0.16);
+}
+
+.personalized-advice__control.is-invalid {
+  border-color: #d84d4d;
+  box-shadow: 0 0 0 3px rgba(216, 77, 77, 0.14);
+}
+
+.personalized-advice__message {
+  color: #d84d4d;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25;
+  margin: -3px 0 0;
+  min-height: 0;
+}
+
+.personalized-advice__message:empty {
+  display: none;
+}
+
+.personalized-advice__phone {
+  display: grid;
+  gap: 8px;
+}
+
+.personalized-advice__prefix-wrap {
+  display: none;
+}
+
+.personalized-advice__select-wrap,
+.personalized-advice__prefix-wrap {
+  position: relative;
+}
+
+.personalized-advice__select-wrap::after,
+.personalized-advice__prefix-wrap::after {
+  border-bottom: 2px solid #263544;
+  border-right: 2px solid #263544;
+  content: "";
+  height: 8px;
+  pointer-events: none;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-65%) rotate(45deg);
+  width: 8px;
+}
+
+.personalized-advice__select {
+  color: #8c8c8c;
+  padding-right: 44px;
+}
+
+.personalized-advice__textarea {
+  height: 87px;
+  padding-top: 16px;
+  resize: vertical;
+}
+
+.personalized-advice__terms {
+  align-items: center;
+  color: #333333;
+  cursor: pointer;
+  display: flex;
+  font-size: 16px;
+  font-weight: 400;
+  gap: 12px;
+  line-height: 1.25;
+  margin-top: 24px;
+}
+
+.personalized-advice__terms a {
+  color: #548cc9;
+  text-decoration: none;
+}
+
+.personalized-advice__checkbox {
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 1px;
+}
+
+.personalized-advice__check {
+  align-items: center;
+  background: #548cc9;
+  border-radius: 3px;
+  display: inline-flex;
+  flex: 0 0 22px;
+  height: 22px;
+  justify-content: center;
+  width: 22px;
+}
+
+.personalized-advice__check::after {
+  border-bottom: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+  content: "";
+  height: 10px;
+  transform: translateY(-1px) rotate(45deg);
+  width: 6px;
+}
+
+.personalized-advice__checkbox:not(:checked) + .personalized-advice__check {
+  background: #ffffff;
+  border: 1px solid #548cc9;
+}
+
+.personalized-advice__checkbox.is-invalid + .personalized-advice__check {
+  border-color: #d84d4d;
+  box-shadow: 0 0 0 3px rgba(216, 77, 77, 0.14);
+}
+
+.personalized-advice__checkbox:not(:checked)
+  + .personalized-advice__check::after {
+  display: none;
+}
+
+.personalized-advice__submit {
+  align-items: center;
+  background: #548cc9;
+  border: 0;
+  border-radius: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 0;
+  line-height: 1;
+  margin-top: 24px;
+  min-height: 47px;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.personalized-advice__message--terms {
+  margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+  .personalized-advice {
+    background-image:
+      linear-gradient(rgba(23, 43, 58, 0.42), rgba(23, 43, 58, 0.42)),
+      var(--personalized-advice-bg-desktop);
+    padding: 100px 32px 98px;
+  }
+
+  .personalized-advice__inner {
+    max-width: 650px;
+  }
+
+  .personalized-advice__panel {
+    border-radius: 28px;
+    padding: 56px 64px 40px;
+  }
+
+  .personalized-advice__title {
+    font-size: 32px;
+    line-height: 1.18;
+    margin-bottom: 28px;
+  }
+
+  .personalized-advice__description {
+    font-size: 16px;
+    line-height: 1.25;
+    margin-bottom: 30px;
+  }
+
+  .personalized-advice__fields {
+    gap: 20px;
+  }
+
+  .personalized-advice__label {
+    gap: 16px;
+  }
+
+  .personalized-advice__label-icon {
+    flex-basis: 24px;
+    height: 24px;
+    width: 24px;
+  }
+
+  .personalized-advice__control {
+    height: 50px;
+  }
+
+  .personalized-advice__phone {
+    grid-template-columns: 85px 1fr;
+  }
+
+  .personalized-advice__prefix-wrap {
+    display: block;
+  }
+
+  .personalized-advice__prefix {
+    padding-right: 30px;
+  }
+
+  .personalized-advice__textarea {
+    height: 78px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .personalized-advice {
+    padding-top: 120px;
+  }
+
+  .personalized-advice__inner {
+    max-width: 650px;
+  }
+}
