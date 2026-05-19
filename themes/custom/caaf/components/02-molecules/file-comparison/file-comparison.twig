@@ -1,0 +1,33 @@
+<section class="file-comparison" aria-labelledby="{{ title_id|default('file-comparison-title') }}">
+  <div class="file-comparison__inner">
+    <div class="file-comparison__intro">
+      {% if title %}
+        <h2 class="file-comparison__title" id="{{ title_id|default('file-comparison-title') }}">
+          {{ title }}
+        </h2>
+      {% endif %}
+
+      {% if description %}
+        <p class="file-comparison__description">{{ description }}</p>
+      {% endif %}
+    </div>
+
+    {% if cards %}
+      <div class="file-comparison__cards" data-image-id="{{ image_id }}">
+        {% for card in cards %}
+          {% set card_data = card|merge({
+            image_id: card.image_id|default(image_id),
+            title_label: card.title_label|default(title_label),
+            title: card.title|default(file_title),
+            code_label: card.code_label|default(code_label),
+            code: card.code|default(file_code),
+            image: card.image|default(image),
+            header_icon: card.header_icon|default(header_icon)
+          }) %}
+
+          {% include "../file-comparison-card/file-comparison-card.twig" with card_data only %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
