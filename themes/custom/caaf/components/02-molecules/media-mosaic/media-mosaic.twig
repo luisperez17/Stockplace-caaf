@@ -1,0 +1,60 @@
+{% set component_id = id|default('media-mosaic') %}
+{% set has_items = items is defined and items %}
+{% set item_count = items|length %}
+{% set column_count = item_count <= 4 ? item_count : (item_count <= 6 ? 3 : 4) %}
+{% set layout = layout|default('adaptive') %}
+
+{% if has_items %}
+  <section
+    class="media-mosaic media-mosaic--{{ layout }}"
+    aria-label="{{ aria_label|default('Galería de medios') }}"
+    style="--media-mosaic-column-count: {{ column_count }};{% if max_width %} --media-mosaic-max-width: {{ max_width }};{% endif %}"
+  >
+    <div class="media-mosaic__inner">
+      <div class="media-mosaic__columns" id="{{ component_id }}">
+        {% for column_index in 0..(column_count - 1) %}
+          <div class="media-mosaic__column">
+            {% for item in items %}
+              {% set item_column = loop.index0 % column_count %}
+              {% set row_index = loop.index0 // column_count %}
+
+              {% if layout == 'four-by-four' and column_count == 4 and loop.index0 == 16 %}
+                {% set item_column = 2 %}
+                {% set row_index = 4 %}
+              {% endif %}
+
+              {% if item_column == column_index %}
+                {% set automatic_size = 'short' %}
+
+                {% if layout == 'two-by-four' %}
+                  {% set automatic_size = (row_index + column_index) is even ? 'short' : 'tall' %}
+                {% elseif layout == 'three-by-four' %}
+                  {% if column_index is even %}
+                    {% set automatic_size = row_index == 2 ? 'tall' : 'short' %}
+                  {% else %}
+                    {% set automatic_size = row_index == 0 ? 'tall' : 'short' %}
+                  {% endif %}
+                {% elseif layout == 'four-by-four' %}
+                  {% if column_index == 0 %}
+                    {% set automatic_size = row_index is odd ? 'tall' : 'short' %}
+                  {% elseif column_index == 2 %}
+                    {% set automatic_size = row_index == 2 ? 'tall' : 'short' %}
+                  {% else %}
+                    {% set automatic_size = row_index < 2 ? 'tall' : 'short' %}
+                  {% endif %}
+                {% else %}
+                  {% set automatic_size = (row_index + column_index) is even ? 'short' : 'tall' %}
+                {% endif %}
+
+                {% include "./media-mosaic-item.twig" with {
+                  item: item,
+                  size: automatic_size
+                } only %}
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}

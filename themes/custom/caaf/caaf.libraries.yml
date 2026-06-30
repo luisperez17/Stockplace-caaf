@@ -17,3 +17,14 @@ modal-confirm:
   dependencies:
     - core/drupal
     - core/once
+
+media-mosaic:
+  version: VERSION
+  css:
+    theme:
+      components/02-molecules/media-mosaic/media-mosaic.css: {}
+  js:
+    components/02-molecules/media-mosaic/media-mosaic.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
