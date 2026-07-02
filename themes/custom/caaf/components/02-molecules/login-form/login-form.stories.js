@@ -1,0 +1,10 @@
+import component from "./login-form.twig";
+import data from "./login-form.yml";
+import "../../01-atoms/form-input/form-input.css";
+import "../../01-atoms/form-input/form-input.js";
+import "../../01-atoms/button/button.css";
+import "./login-form.css";
+export default { title: "Molecules/Login Form" };
+export const form = () => component(data);
+export const invalidCredentials = () => component({ ...data, error_message: "Usuario o contraseña incorrectos. Verifica tus datos e intenta de nuevo." });
+export const floodControl = () => component({ ...data, error_message: "Tu acceso está bloqueado temporalmente. Intenta de nuevo en unos minutos o contacta al administrador." });

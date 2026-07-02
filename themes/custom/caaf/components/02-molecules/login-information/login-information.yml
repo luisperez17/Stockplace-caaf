@@ -1,0 +1,14 @@
+background: "/login-background.jpg"
+logo: "/login-logo.png"
+title: "Conecta tus proyectos con la riqueza audiovisual de Colombia."
+benefits:
+  - { symbol: "▧", text: "Accede de manera exclusiva al contenido audiovisual premium de ProColombia." }
+  - { symbol: "♢", text: "Diseñado para entidades gubernamentales que requieren archivos audiovisuales de alta calidad." }
+  - { symbol: "ϟ", text: "Fortalece la promoción internacional de Colombia en turismo, marca país, exportaciones e inversión." }
+contact: { title: "LÍNEAS DE ATENCIÓN", phone: "+57 601 5600100", hours: "Lun - Vie 8:30 A.M. - 5:30 P.M." }
+social:
+  - { name: "Facebook", label: "f", url: "#" }
+  - { name: "X", label: "𝕏", url: "#" }
+  - { name: "Instagram", label: "◎", url: "#" }
+  - { name: "YouTube", label: "▶", url: "#" }
+  - { name: "LinkedIn", label: "in", url: "#" }

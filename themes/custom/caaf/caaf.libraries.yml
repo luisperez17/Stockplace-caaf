@@ -28,3 +28,43 @@ media-mosaic:
   dependencies:
     - core/drupal
     - core/once
+
+form-input:
+  version: VERSION
+  css:
+    component:
+      components/01-atoms/form-input/form-input.css: {}
+  js:
+    components/01-atoms/form-input/form-input.js: {}
+  dependencies:
+    - core/drupal
+
+button:
+  version: VERSION
+  css:
+    component:
+      components/01-atoms/button/button.css: {}
+
+login-information:
+  version: VERSION
+  css:
+    component:
+      components/02-molecules/login-information/login-information.css: {}
+
+login-form:
+  version: VERSION
+  css:
+    component:
+      components/02-molecules/login-form/login-form.css: {}
+  dependencies:
+    - caaf/form-input
+    - caaf/button
+
+login-page:
+  version: VERSION
+  css:
+    component:
+      components/03-organisms/login-page/login-page.css: {}
+  dependencies:
+    - caaf/login-information
+    - caaf/login-form
