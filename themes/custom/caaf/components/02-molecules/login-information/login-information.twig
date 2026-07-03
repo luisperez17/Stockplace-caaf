@@ -1,0 +1,27 @@
+{% set theme_base_path = base_path|default('/') %}
+{% set theme_asset_path = directory is defined ? theme_base_path ~ directory ~ '/assets/images' : '' %}
+{% set background_src = background|default(theme_asset_path ~ '/login-background.jpg') %}
+{% set logo_src = logo|default(theme_asset_path ~ '/login-logo.png') %}
+
+<aside class="login-information" style="--login-background: url('{{ background_src }}')" aria-label="Información de ProColombia StockPlace">
+  <div class="login-information__content">
+    <img class="login-information__brand" src="{{ logo_src }}" alt="ProColombia StockPlace" width="450" height="82">
+    <h1 class="login-information__title">{{ title }}</h1>
+    <ul class="login-information__benefits">
+      {% for benefit in benefits %}
+        <li class="login-information__benefit">
+          <span class="login-information__benefit-icon login-information__benefit-icon--{{ loop.index }}" aria-hidden="true">{{ benefit.symbol }}</span>
+          <span>{{ benefit.text }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+    <div class="login-information__bottom">
+      <div class="login-information__contact">
+        <strong>{{ contact.title }}</strong><span>{{ contact.phone }}</span><span>{{ contact.hours }}</span>
+      </div>
+      <nav class="login-information__social" aria-label="Redes sociales">
+        {% for item in social %}<a href="{{ item.url }}" aria-label="{{ item.name }}"{% if item.external %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ item.label }}</a>{% endfor %}
+      </nav>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,9 @@
+title: "Iniciar sesión"
+form_action: "/user/login"
+form_method: "post"
+forgot_url: "/user/password"
+advice_url: "/#asesoria-personalizada"
+submit_label: "Ingresar"
+fields:
+  - { id: "login-user", name: "name", type: "text", label: "Usuario", placeholder: "Usuario", icon: "user", autocomplete: "username", required: true }
+  - { id: "login-password", name: "pass", type: "password", label: "Contraseña", placeholder: "Contraseña", icon: "password", autocomplete: "current-password", required: true }

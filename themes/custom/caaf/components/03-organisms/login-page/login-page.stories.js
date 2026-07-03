@@ -1,0 +1,12 @@
+import component from "./login-page.twig";
+import data from "./login-page.yml";
+import "../../01-atoms/form-input/form-input.css";
+import "../../01-atoms/form-input/form-input.js";
+import "../../01-atoms/button/button.css";
+import "../../02-molecules/login-information/login-information.css";
+import "../../02-molecules/login-form/login-form.css";
+import "./login-page.css";
+export default { title: "Organisms/Login Page", parameters: { layout: "fullscreen" } };
+export const login = () => component(data);
+export const invalidCredentials = () => component({ ...data, form: { ...data.form, error_message: "Usuario o contraseña incorrectos. Verifica tus datos e intenta de nuevo." } });
+export const floodControl = () => component({ ...data, form: { ...data.form, error_message: "Tu acceso está bloqueado temporalmente. Intenta de nuevo en unos minutos o contacta al administrador." } });

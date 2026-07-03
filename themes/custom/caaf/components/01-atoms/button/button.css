@@ -1,0 +1,6 @@
+.button { align-items: center; border: 0; box-sizing: border-box; cursor: pointer; display: inline-flex; font: 500 16px/1.2 "Poppins", sans-serif; height: 47px; justify-content: center; padding: 0 24px; transition: background-color 160ms ease, transform 160ms ease; width: 100%; }
+.button--primary { background: #548cc9; border-radius: 20px; color: #fff; }
+.button--primary:hover { background: #397dbf; }
+.button:active { transform: translateY(1px); }
+.button:focus-visible { outline: 3px solid rgba(87, 148, 210, .4); outline-offset: 3px; }
+.button:disabled { cursor: not-allowed; opacity: .6; }

@@ -1,0 +1,18 @@
+<section class="login-form" aria-labelledby="login-title">
+  <form class="login-form__card" action="{{ form_action|default('/user/login') }}" method="{{ form_method|default('post') }}" data-login-form>
+    <h2 class="login-form__title" id="login-title">{{ title|default('Iniciar sesión') }}</h2>
+    <div class="login-form__fields">
+      {% for field in fields %}{% include "../../01-atoms/form-input/form-input.twig" with field only %}{% endfor %}
+    </div>
+    {% if error_message %}<div class="login-form__alert" role="alert">{{ error_message }}</div>{% endif %}
+    <a class="login-form__forgot" href="{{ forgot_url|default('/user/password') }}">¿Olvidaste tu contraseña?</a>
+    {% include "../../01-atoms/button/button.twig" with { label: submit_label|default('Ingresar'), type: 'submit', variant: 'primary' } only %}
+    <div class="login-form__separator"><span>O</span></div>
+    <div class="login-form__access">
+      <p>¿No tienes acceso?</p>
+      <p>Para obtener acceso debes<br>contactarte con un asesor de ProColombia</p>
+      <a href="{{ advice_url|default('/#asesoria-personalizada') }}" data-advice-link>Comunícate con un asesor</a>
+    </div>
+    {% if hidden_fields %}{{ hidden_fields }}{% endif %}
+  </form>
+</section>

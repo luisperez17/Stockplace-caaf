@@ -1,0 +1,93 @@
+.login-form {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  font-family: "Poppins", sans-serif;
+  justify-content: center;
+  min-height: calc(100vh - 45px);
+  padding: 44px 10px;
+}
+
+.login-form * { box-sizing: border-box; }
+
+.login-form__card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: 0 5px 5px rgba(21, 32, 42, .25);
+  display: flex;
+  flex-direction: column;
+  height: 518px;
+  max-width: 353px;
+  padding: 35px 20px 28px;
+  width: 100%;
+}
+
+.login-form__card:has(.login-form__alert) { height: auto; min-height: 518px; }
+
+.login-form__title {
+  color: #263b50;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.login-form__fields { display: grid; gap: 24px; }
+
+.login-form__alert {
+  background: #fff1f2;
+  border-left: 4px solid #c92b3f;
+  color: #942033;
+  font-size: 12px;
+  margin-top: 8px;
+  padding: 6px 8px;
+}
+
+.login-form__forgot {
+  color: #4994dd;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 20px 0 18px;
+  text-decoration: none;
+}
+
+.login-form__forgot:hover,
+.login-form__access a:hover { text-decoration: underline; }
+
+.login-form__separator {
+  align-items: center;
+  color: #a8a8a8;
+  display: flex;
+  font-size: 14px;
+  gap: 18px;
+  margin: 18px 0;
+}
+
+.login-form__separator::before,
+.login-form__separator::after {
+  background: #e3e4e4;
+  content: "";
+  flex: 1;
+  height: 2px;
+}
+
+.login-form__access { color: #4a5565; font-weight: 400; text-align: center; }
+.login-form__access p { font-size: 12px; font-weight: 200; line-height: 1.55; margin: 0 0 15px; }
+.login-form__access a { color: #4994dd; font-size: 12px; font-weight: 500; text-decoration: none; }
+
+@media (min-width: 768px) {
+  .login-form { padding: 50px 28px; }
+  .login-form__card { border-radius: 30px; height: 541px; max-width: 553px; padding: 39px 64px 32px; }
+  .login-form__card:has(.login-form__alert) { height: auto; min-height: 541px; }
+  .login-form__title { font-size: 32px; margin-bottom: 27px; }
+  .login-form__fields { gap: 25px; }
+  .login-form__forgot { font-size: 14px; margin: 22px 0 20px; }
+  .login-form__separator { margin: 20px 0 18px; }
+  .login-form__access p { font-size: 14px; margin-bottom: 17px; }
+  .login-form__access a { font-size: 14px; }
+}
+
+@media (max-width: 372px) {
+  .login-form__card { height: auto; min-height: 518px; }
+}

@@ -1,0 +1,7 @@
+id: "login-user"
+name: "name"
+label: "Usuario"
+placeholder: "Usuario"
+icon: "user"
+required: true
+autocomplete: "username"

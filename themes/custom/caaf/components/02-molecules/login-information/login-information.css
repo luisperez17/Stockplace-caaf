@@ -1,0 +1,107 @@
+.login-information {
+  background:
+    linear-gradient(#273848e5, #273848e5),
+    var(--login-background) center/cover no-repeat;
+  box-sizing: border-box;
+  color: #fff;
+  display: none;
+  font-family: "Poppins", sans-serif;
+  min-height: calc(100vh - 45px);
+}
+.login-information * {
+  box-sizing: border-box;
+}
+.login-information__content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1040px;
+  min-height: calc(100vh - 45px);
+  padding: 54px clamp(60px, 7vw, 140px);
+  width: 100%;
+}
+.login-information__brand {
+  display: block;
+  height: 82px;
+  margin-bottom: 44px;
+  max-width: 450px;
+  object-fit: contain;
+  object-position: left center;
+  width: 100%;
+}
+.login-information__title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0 0 clamp(42px, 5.5vh, 48px);
+  max-width: 650px;
+}
+.login-information__benefits {
+  display: grid;
+  gap: 28px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.login-information__benefit {
+  align-items: center;
+  display: grid;
+  font-size: 16px;
+  font-weight: 400;
+  gap: 30px;
+  grid-template-columns: 68px 1fr;
+  line-height: 1.45;
+}
+.login-information__benefit-icon {
+  align-items: center;
+  background: #5794d2;
+  border-radius: 17px;
+  display: flex;
+  font-size: 28px;
+  height: 68px;
+  justify-content: center;
+  line-height: 36px;
+  width: 68px;
+}
+.login-information__benefit-icon--2 {
+  background: #a70077;
+}
+.login-information__benefit-icon--3 {
+  background: #ca123a;
+}
+.login-information__bottom {
+  align-items: end;
+  display: flex;
+  justify-content: space-between;
+  margin-top: clamp(38px, 6vh, 56px);
+}
+.login-information__contact {
+  display: grid;
+  font-size: 10px;
+  font-weight: 300;
+  gap: 7px;
+}
+.login-information__contact strong {
+  font-size: 12px;
+  font-weight: 700;
+}
+.login-information__social {
+  align-items: center;
+  display: flex;
+  gap: 25px;
+}
+.login-information__social a {
+  color: #fff;
+  font-size: 23px;
+  text-decoration: none;
+}
+.login-information__social a:hover {
+  opacity: 0.75;
+}
+@media (min-width: 951px) {
+  .login-information {
+    display: block;
+  }
+}

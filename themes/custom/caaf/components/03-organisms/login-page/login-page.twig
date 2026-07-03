@@ -1,0 +1,14 @@
+<div class="login-page">
+  <main class="login-page__main">
+    {% include "../../02-molecules/login-information/login-information.twig" with information only %}
+    <div class="login-page__form-panel">
+      {% include "../../02-molecules/login-form/login-form.twig" with form only %}
+    </div>
+  </main>
+  <footer class="login-page__footer">
+    <span>Copyright © {{ copyright_year|default(2026) }}.</span>
+    <a href="{{ terms_url|default('/terminos-y-condiciones') }}">Términos y Condiciones</a>
+    <span>– Lea sobre los cambios en nuestra</span>
+    <a href="{{ privacy_url|default('/politica-de-tratamiento-y-privacidad') }}">Política de Tratamiento y Privacidad.</a>
+  </footer>
+</div>

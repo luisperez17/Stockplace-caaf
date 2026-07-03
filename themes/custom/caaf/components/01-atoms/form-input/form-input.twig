@@ -1,0 +1,25 @@
+{% set input_id = id|default(name) %}
+{% set described_by = error ? input_id ~ '-error' : '' %}
+<div class="form-input{% if error %} form-input--error{% endif %}">
+  <label class="form-input__label visually-hidden" for="{{ input_id }}">{{ label }}</label>
+  <div class="form-input__control">
+    <span class="form-input__icon form-input__icon--{{ icon|default('user') }}" aria-hidden="true"></span>
+    <input
+      class="form-input__field"
+      id="{{ input_id }}"
+      name="{{ name }}"
+      type="{{ type|default('text') }}"
+      placeholder="{{ placeholder|default(label) }}"
+      autocomplete="{{ autocomplete|default('off') }}"
+      {% if required %}required aria-required="true"{% endif %}
+      {% if described_by %}aria-describedby="{{ described_by }}" aria-invalid="true"{% endif %}
+      {% if type == 'password' %}data-password-input{% endif %}
+    >
+    {% if type == 'password' %}
+      <button class="form-input__toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" data-password-toggle>
+        <span class="form-input__eye" aria-hidden="true"></span>
+      </button>
+    {% endif %}
+  </div>
+  {% if error %}<p class="form-input__error" id="{{ input_id }}-error">{{ error }}</p>{% endif %}
+</div>
