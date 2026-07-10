@@ -41,11 +41,8 @@
         button.addEventListener("click", closeModal);
       });
 
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeModal();
-        }
-      });
+      modal.modalConfirmOpen = openModal;
+      modal.modalConfirmClose = closeModal;
 
       document.addEventListener("keydown", (event) => {
         if (event.key === "Escape" && modal.classList.contains("is-open")) {

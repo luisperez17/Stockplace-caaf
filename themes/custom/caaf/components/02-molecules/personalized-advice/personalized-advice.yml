@@ -7,6 +7,25 @@ validation:
   email: "Ingresa un correo válido."
   select: "Selecciona una opción."
   terms: "Debes aceptar los términos y condiciones."
+conditional:
+  source: "consultation_type"
+  trigger_option_id: "registro"
+  notification_recipient_name: "notification_recipient"
+  editor_note: "Para activar los campos condicionales, la opción Registro del Tipo de consulta debe conservar option_id: registro."
+success_modal:
+  modal_id: "personalized-advice-success"
+  title: "¡Formulario enviado con éxito!"
+  text: "Hemos recibido tu información correctamente. Pronto uno de nuestros asesores se pondrá en contacto contigo."
+  icon_src: "https://i.postimg.cc/L82WXvTM/Vector.png"
+  is_open: false
+  close_button:
+    label: "Cerrar modal"
+  primary_button:
+    text: ""
+    url: "#"
+  secondary_button:
+    text: ""
+    url: "#"
 background:
   mobile: "/personalized-advice-bg.jpg"
   desktop: "/personalized-advice-bg.jpg"
@@ -75,6 +94,108 @@ fields:
         label: "Exportaciones"
       - value: "inversion"
         label: "Inversión"
+      - value: "registro"
+        label: "Solicitud creación usuario Gubernamental"
+        option_id: "registro"
+  - id: "advice-document-number"
+    name: "document_number"
+    type: "document"
+    icon: "message"
+    label: "Tipo de documento + Número"
+    placeholder: "Ingresa el número"
+    required: true
+    conditional_group: "registro"
+    minlength: 5
+    maxlength: 20
+    pattern: "[A-Za-z0-9-]{5,20}"
+    validation_message: "Usa entre 5 y 20 caracteres, solo letras, números o guion."
+    minlength_message: "Escribe mínimo 5 caracteres."
+    prefix_name: "document_type"
+    prefix_label: "Tipo de documento"
+    prefix_options:
+      - value: "CC"
+        label: "CC"
+      - value: "CE"
+        label: "CE"
+      - value: "PP"
+        label: "PP"
+      - value: "NIT"
+        label: "NIT"
+  - id: "advice-role"
+    name: "role"
+    type: "text"
+    icon: "company"
+    label: "Cargo / Función"
+    placeholder: "Ej. Coordinador"
+    required: true
+    conditional_group: "registro"
+    minlength: 2
+    maxlength: 100
+    minlength_message: "Escribe mínimo 2 caracteres."
+  - id: "advice-department"
+    name: "department"
+    type: "text"
+    icon: "company"
+    label: "Área / Departamento"
+    placeholder: "Ej. Planeación"
+    required: true
+    conditional_group: "registro"
+    minlength: 2
+    maxlength: 100
+    minlength_message: "Escribe mínimo 2 caracteres."
+  - id: "advice-country"
+    name: "country"
+    type: "text"
+    icon: "search"
+    label: "País"
+    placeholder: "Ej. Colombia"
+    required: true
+    conditional_group: "registro"
+    minlength: 2
+    maxlength: 80
+    minlength_message: "Escribe mínimo 2 caracteres."
+  - id: "advice-city"
+    name: "city"
+    type: "text"
+    icon: "search"
+    label: "Ciudad"
+    placeholder: "Ej. Bogotá"
+    required: true
+    conditional_group: "registro"
+    minlength: 2
+    maxlength: 80
+    minlength_message: "Escribe mínimo 2 caracteres."
+  - id: "advice-procolombia-axis"
+    name: "procolombia_axis"
+    type: "select"
+    icon: "search"
+    label: "Eje ProColombia"
+    placeholder: "Seleccione un eje"
+    required: true
+    options:
+      - value: "turismo"
+        label: "Turismo"
+        notification_email: "turismo@example.com"
+      - value: "exportaciones"
+        label: "Exportaciones"
+        notification_email: "exportaciones@example.com"
+      - value: "inversion"
+        label: "Inversión"
+        notification_email: "inversion@example.com"
+      - value: "marca-pais"
+        label: "Marca País"
+        notification_email: "marca-pais@example.com"
+  - id: "advice-justification"
+    name: "justification"
+    type: "textarea"
+    icon: "message"
+    label: "Justificación"
+    placeholder: "Explica brevemente la solicitud"
+    required: true
+    conditional_group: "registro"
+    minlength: 10
+    maxlength: 500
+    minlength_message: "Escribe mínimo 10 caracteres."
   - id: "advice-message"
     name: "message"
     type: "textarea"
@@ -92,4 +213,4 @@ terms:
   link_text: "términos y condiciones"
   url: "#"
   required: true
-submit_label: "Quiero que me contacten"
+submit_label: "Enviar"

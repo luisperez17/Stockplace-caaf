@@ -27,6 +27,111 @@
     }
   };
 
+  const clearInput = (input) => {
+    setMessage(input, "");
+    input.setAttribute("aria-invalid", "false");
+  };
+
+  const getSelectedOptionKey = (select) => {
+    const option = select?.selectedOptions?.[0];
+
+    return option?.dataset.optionId || option?.value || "";
+  };
+
+  const updateNotificationRecipient = (form) => {
+    const recipient = form.querySelector("[data-notification-recipient]");
+    const axis = form.querySelector('[name="procolombia_axis"]');
+    const selectedOption = axis?.selectedOptions?.[0];
+
+    if (recipient) {
+      recipient.value = selectedOption?.dataset.notificationEmail || "";
+    }
+  };
+
+  const inputIsComplete = (input) => {
+    const value = input.value.trim();
+    const minLength = Number(input.getAttribute("minlength")) || 0;
+
+    if (input.disabled) {
+      return true;
+    }
+
+    if (input.required && !value) {
+      return false;
+    }
+
+    if (!value) {
+      return true;
+    }
+
+    if (minLength && value.length < minLength) {
+      return false;
+    }
+
+    return input.validity.valid;
+  };
+
+  const updateSubmitState = (form) => {
+    const submit = form.querySelector("[data-personalized-advice-submit]");
+    const inputs = Array.from(form.querySelectorAll("[data-personalized-advice-input]"));
+    const terms = form.querySelector("[data-personalized-advice-terms]");
+    const fieldsAreComplete = inputs.every(inputIsComplete);
+    const termsAreComplete = Boolean(!terms?.required || terms.checked);
+
+    if (submit) {
+      submit.disabled = !(fieldsAreComplete && termsAreComplete);
+    }
+  };
+
+  const openSuccessModal = (form) => {
+    const modal = form
+      .closest(".personalized-advice")
+      ?.querySelector("[data-modal-confirm]");
+
+    if (!modal) {
+      return;
+    }
+
+    if (typeof modal.modalConfirmOpen === "function") {
+      modal.modalConfirmOpen();
+      return;
+    }
+
+    modal.hidden = false;
+    modal.classList.add("is-open");
+    modal.querySelector(".modal-confirm__dialog")?.focus();
+  };
+
+  const syncConditionalFields = (form) => {
+    const sourceName = form.dataset.conditionalSource;
+    const trigger = form.dataset.conditionalTrigger;
+    const source = sourceName
+      ? form.querySelector(`[name="${sourceName}"]`)
+      : null;
+    const selectedKey = getSelectedOptionKey(source);
+    const isActive = Boolean(trigger && selectedKey === trigger);
+
+    form.querySelectorAll("[data-conditional-group]").forEach((field) => {
+      const shouldEnable = field.dataset.conditionalGroup === trigger && isActive;
+
+      field.hidden = !shouldEnable;
+      field.querySelectorAll("input, select, textarea").forEach((input) => {
+        input.disabled = !shouldEnable;
+
+        if (input.hasAttribute("data-personalized-advice-input")) {
+          input.required = shouldEnable && input.dataset.requiredWhenActive === "true";
+        }
+
+        if (!shouldEnable && input.hasAttribute("data-personalized-advice-input")) {
+          clearInput(input);
+        }
+      });
+    });
+
+    updateNotificationRecipient(form);
+    updateSubmitState(form);
+  };
+
   const getFieldMessage = (form, input) => {
     const value = input.value.trim();
     const minLength = Number(input.getAttribute("minlength")) || 0;
@@ -54,6 +159,11 @@
   };
 
   const validateInput = (form, input) => {
+    if (input.disabled) {
+      clearInput(input);
+      return true;
+    }
+
     const message = getFieldMessage(form, input);
     setMessage(input, message);
 
@@ -81,6 +191,10 @@
     runOnce("personalized-advice", "[data-personalized-advice]", context).forEach((form) => {
       const inputs = Array.from(form.querySelectorAll("[data-personalized-advice-input]"));
       const terms = form.querySelector("[data-personalized-advice-terms]");
+      const conditionalSource = form.dataset.conditionalSource
+        ? form.querySelector(`[name="${form.dataset.conditionalSource}"]`)
+        : null;
+      const axis = form.querySelector('[name="procolombia_axis"]');
 
       inputs.forEach((input) => {
         input.addEventListener("input", () => {
@@ -91,20 +205,49 @@
           if (input.classList.contains("is-invalid")) {
             validateInput(form, input);
           }
+
+          updateSubmitState(form);
         });
 
-        input.addEventListener("blur", () => validateInput(form, input));
+        input.addEventListener("change", () => {
+          if (input === axis) {
+            updateNotificationRecipient(form);
+          }
+
+          if (input.classList.contains("is-invalid")) {
+            validateInput(form, input);
+          }
+
+          updateSubmitState(form);
+        });
+
+        input.addEventListener("blur", () => {
+          validateInput(form, input);
+          updateSubmitState(form);
+        });
       });
 
-      terms?.addEventListener("change", () => validateTerms(form));
+      conditionalSource?.addEventListener("change", () => syncConditionalFields(form));
+      terms?.addEventListener("change", () => {
+        validateTerms(form);
+        updateSubmitState(form);
+      });
+      syncConditionalFields(form);
+      updateSubmitState(form);
 
       form.addEventListener("submit", (event) => {
+        syncConditionalFields(form);
         const fieldsAreValid = inputs.map((input) => validateInput(form, input)).every(Boolean);
         const termsAreValid = validateTerms(form);
 
         if (!fieldsAreValid || !termsAreValid) {
           event.preventDefault();
+          updateSubmitState(form);
+          return;
         }
+
+        event.preventDefault();
+        openSuccessModal(form);
       });
     });
   };
