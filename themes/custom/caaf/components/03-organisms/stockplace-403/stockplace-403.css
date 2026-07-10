@@ -1,0 +1,161 @@
+.stockplace-403 {
+  align-items: flex-start;
+  background: #f2f7fb;
+  box-sizing: border-box;
+  color: #263544;
+  display: flex;
+  font-family: "Poppins", "Roboto", sans-serif;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 54px 24px 40px;
+  width: 100%;
+}
+
+.stockplace-403__content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 1130px;
+  text-align: center;
+  width: 100%;
+}
+
+.stockplace-403__mark {
+  align-items: center;
+  border-radius: 50%;
+  color: #213a7b;
+  display: flex;
+  height: 120px;
+  justify-content: center;
+  margin: 0 0 22px;
+  position: relative;
+  width: 120px;
+}
+
+.stockplace-403__mark-ring {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.stockplace-403__mark-ring--outer {
+  background: rgba(221, 239, 253, 0.36);
+  height: 120px;
+  width: 120px;
+}
+
+.stockplace-403__mark-ring--middle {
+  border: 2px dashed rgba(202, 222, 239, 0.72);
+  height: 78px;
+  width: 78px;
+}
+
+.stockplace-403__mark-core {
+  align-items: center;
+  background: #d3e9ff;
+  border-radius: 50%;
+  display: flex;
+  height: 66px;
+  justify-content: center;
+  position: relative;
+  width: 66px;
+  z-index: 1;
+}
+
+.stockplace-403__icon {
+  display: block;
+  height: 35px;
+  width: 35px;
+}
+
+.stockplace-403__code {
+  color: #548CC9;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0 0 22px;
+}
+
+.stockplace-403__title {
+  color: #273848;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.18;
+  margin: 0 0 14px;
+}
+
+.stockplace-403__text {
+  color: #646464;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.38;
+  margin: 0 auto 24px;
+  max-width: 356px;
+}
+
+.stockplace-403__actions {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+  max-width: 352px;
+  width: 100%;
+}
+
+.stockplace-403__button {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .stockplace-403 {
+    padding: 76px 24px 72px;
+  }
+
+  .stockplace-403__mark {
+    height: 164px;
+    margin-bottom: 30px;
+    width: 164px;
+  }
+
+  .stockplace-403__mark-ring--outer {
+    height: 164px;
+    width: 164px;
+  }
+
+  .stockplace-403__mark-ring--middle {
+    height: 106px;
+    width: 106px;
+  }
+
+  .stockplace-403__mark-core {
+    height: 90px;
+    width: 90px;
+  }
+
+  .stockplace-403__icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .stockplace-403__code {
+    font-size: 36px;
+    margin-bottom: 38px;
+  }
+
+  .stockplace-403__title {
+    font-size: 32px;
+    margin-bottom: 28px;
+  }
+
+  .stockplace-403__text {
+    font-size: 18px;
+    line-height: 1.42;
+    margin-bottom: 36px;
+    max-width: 1000px;
+  }
+
+  .stockplace-403__actions {
+    gap: 24px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1010px;
+  }
+
+}

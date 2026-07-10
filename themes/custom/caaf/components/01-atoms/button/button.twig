@@ -1,1 +1,14 @@
-<button class="button button--{{ variant|default('primary') }}" type="{{ type|default('button') }}"{% if disabled %} disabled{% endif %}>{{ label }}</button>
+{% set button_variant = variant|default('primary') %}
+{% set button_classes = [
+  'button',
+  'button--' ~ button_variant,
+  extra_classes|default(''),
+] %}
+
+{% if url %}
+  <a class="{{ button_classes|join(' ')|trim }}" href="{{ url }}"{% if target %} target="{{ target }}"{% endif %}{% if rel %} rel="{{ rel }}"{% endif %}>
+    {{ label }}
+  </a>
+{% else %}
+  <button class="{{ button_classes|join(' ')|trim }}" type="{{ type|default('button') }}"{% if disabled %} disabled{% endif %}>{{ label }}</button>
+{% endif %}

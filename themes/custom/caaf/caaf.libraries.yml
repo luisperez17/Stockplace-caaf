@@ -45,6 +45,14 @@ button:
     component:
       components/01-atoms/button/button.css: {}
 
+stockplace-403:
+  version: VERSION
+  css:
+    component:
+      components/03-organisms/stockplace-403/stockplace-403.css: {}
+  dependencies:
+    - caaf/button
+
 login-information:
   version: VERSION
   css:
