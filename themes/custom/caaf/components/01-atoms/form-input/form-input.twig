@@ -1,17 +1,111 @@
 {% set input_id = id|default(name) %}
 {% set message_id = input_id ~ '-message' %}
-{% set has_message = error or help or type == 'password' %}
+{% set has_message = error or help or type == 'password' or message_role %}
 {% set described_by = has_message ? message_id : '' %}
 {% set input_classes = ['form-input'] %}
 {% if error %}{% set input_classes = input_classes|merge(['form-input--error']) %}{% endif %}
 {% if variant %}{% set input_classes = input_classes|merge(['form-input--' ~ variant]) %}{% endif %}
-<div class="{{ input_classes|join(' ') }}"{% if field_role %} data-{{ field_role }}-field{% endif %}>
+{% set is_conditional = conditional_group is defined and conditional_group %}
+<div class="{{ input_classes|join(' ') }}"{% if field_role %} data-{{ field_role }}-field{% endif %}{% if is_conditional %} data-conditional-group="{{ conditional_group }}" hidden{% endif %}>
   <label class="form-input__label{% if label_hidden|default(true) %} visually-hidden{% endif %}" for="{{ input_id }}">
-    {% if icon and not label_hidden|default(true) %}<span class="form-input__label-icon form-input__icon--{{ icon }}" aria-hidden="true"></span>{% endif %}
-    <span>{{ label }}</span>
+    {% if icon and not label_hidden|default(true) %}
+      <span class="form-input__label-icon form-input__icon--{{ icon }}" aria-hidden="true">
+        {% if icon_src %}
+          <img src="{{ icon_src }}" alt="" loading="lazy">
+        {% elseif icon == 'user' %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4.5 21a7.5 7.5 0 0 1 15 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        {% elseif icon == 'mail' %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M3 6.5h18v12H3v-12Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m3.8 7.4 8.2 6.2 8.2-6.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {% elseif icon == 'phone' %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M6.9 3.8 9.5 7c.4.5.3 1.2-.1 1.6l-1.2 1.1a12.5 12.5 0 0 0 6.1 6.1l1.1-1.2c.4-.5 1.1-.5 1.6-.1l3.2 2.6c.5.4.6 1.1.3 1.6l-1.4 2.2c-.4.6-1 .8-1.7.7A18.4 18.4 0 0 1 3.4 7.7c-.1-.7.2-1.4.7-1.7l2.2-1.4c.5-.3 1.2-.2 1.6.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        {% elseif icon == 'company' %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M4 21V5.5c0-.8.7-1.5 1.5-1.5h8c.8 0 1.5.7 1.5 1.5V21M15 9h4.5c.8 0 1.5.7 1.5 1.5V21M2.5 21h19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 8h3M8 12h3M8 16h3M18 13h1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        {% elseif icon == 'search' %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="m4 20 5.3-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14.5 5.1a5.7 5.7 0 1 1 5.4 5.4M15.8 3.5h4.4c.7 0 1.3.6 1.3 1.3v3.7c0 .7-.6 1.3-1.3 1.3h-1.4l-1.7 1.6V9.8h-1.3c-.7 0-1.3-.6-1.3-1.3V4.8c0-.7.6-1.3 1.3-1.3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M17.2 6.1h2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        {% else %}
+          <svg viewBox="0 0 24 24" focusable="false"><path d="M3.5 4.5h18v13h-14L3.5 21V4.5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M7 8.5h11M7 12h11M7 15.5h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        {% endif %}
+      </span>
+    {% endif %}
+    <span>{{ label }}{% if required %} <span aria-hidden="true">*</span>{% endif %}</span>
   </label>
-  <div class="form-input__control">
-    {% if icon and label_hidden|default(true) %}<span class="form-input__icon form-input__icon--{{ icon }}" aria-hidden="true"></span>{% endif %}
+  {% if type == 'textarea' %}
+    <textarea
+      class="form-input__field form-input__textarea"
+      id="{{ input_id }}"
+      name="{{ name }}"
+      placeholder="{{ placeholder|default(label) }}"
+      {% if described_by %}aria-describedby="{{ described_by }}"{% endif %}
+      {% if validation_message %}data-message-pattern="{{ validation_message }}"{% endif %}
+      {% if minlength_message %}data-message-minlength="{{ minlength_message }}"{% endif %}
+      {% if autocomplete %}autocomplete="{{ autocomplete }}"{% endif %}
+      {% if minlength %}minlength="{{ minlength }}"{% endif %}
+      {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+      {% if required %}{% if is_conditional %}data-required-when-active="true"{% else %}required aria-required="true"{% endif %}{% endif %}
+      {% if is_conditional %}disabled{% endif %}
+      {% if input_role %}data-{{ input_role }}{% endif %}
+    >{% if value is defined %}{{ value }}{% endif %}</textarea>
+  {% elseif type == 'select' %}
+    <div class="form-input__select-wrap">
+      <select
+        class="form-input__field form-input__select"
+        id="{{ input_id }}"
+        name="{{ name }}"
+        {% if described_by %}aria-describedby="{{ described_by }}"{% endif %}
+        {% if validation_message %}data-message-pattern="{{ validation_message }}"{% endif %}
+        {% if required %}{% if is_conditional %}data-required-when-active="true"{% else %}required aria-required="true"{% endif %}{% endif %}
+        {% if is_conditional %}disabled{% endif %}
+        {% if input_role %}data-{{ input_role }}{% endif %}
+      >
+        {% if placeholder %}
+          <option value="" selected disabled hidden>{{ placeholder }}</option>
+        {% endif %}
+        {% for option in options %}
+          <option
+            value="{{ option.value }}"
+            {% if option.option_id %}data-option-id="{{ option.option_id }}"{% endif %}
+            {% if option.notification_email %}data-notification-email="{{ option.notification_email }}"{% endif %}
+          >{{ option.label }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  {% elseif type == 'phone' or type == 'document' %}
+    <div class="form-input__compound form-input__compound--{{ type }}">
+      {% if prefix_options %}
+        <div class="form-input__prefix-wrap">
+          <select class="form-input__field form-input__prefix" name="{{ prefix_name|default(name ~ '_prefix') }}" aria-label="{{ prefix_label|default('Indicativo') }}" {% if is_conditional %}disabled{% endif %}>
+            {% for option in prefix_options %}
+              <option value="{{ option.value }}">{{ option.label }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      {% endif %}
+      <input
+        class="form-input__field"
+        id="{{ input_id }}"
+        name="{{ name }}"
+        type="{{ type == 'phone' ? 'tel' : 'text' }}"
+        placeholder="{{ placeholder|default(label) }}"
+        autocomplete="{{ autocomplete|default('off') }}"
+        {% if value is defined %}value="{{ value }}"{% endif %}
+        {% if minlength %}minlength="{{ minlength }}"{% endif %}
+        {% if min_length %}minlength="{{ min_length }}"{% endif %}
+        {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+        {% if inputmode %}inputmode="{{ inputmode }}"{% endif %}
+        {% if pattern %}pattern="{{ pattern }}"{% endif %}
+        {% if validation_message %}data-message-pattern="{{ validation_message }}"{% endif %}
+        {% if minlength_message %}data-message-minlength="{{ minlength_message }}"{% endif %}
+        {% if type == 'phone' %}data-digits-only{% endif %}
+        {% if required %}{% if is_conditional %}data-required-when-active="true"{% else %}required aria-required="true"{% endif %}{% endif %}
+        {% if described_by %}aria-describedby="{{ described_by }}"{% endif %}
+        {% if error %}aria-invalid="true"{% endif %}
+        {% if is_conditional %}disabled{% endif %}
+        {% if input_role %}data-{{ input_role }}{% endif %}
+      >
+    </div>
+  {% else %}
+    <div class="form-input__control">
+      {% if icon and label_hidden|default(true) %}<span class="form-input__icon form-input__icon--{{ icon }}" aria-hidden="true"></span>{% endif %}
     <input
       class="form-input__field"
       id="{{ input_id }}"
@@ -20,10 +114,17 @@
       placeholder="{{ placeholder|default(label) }}"
       autocomplete="{{ autocomplete|default('off') }}"
       {% if value is defined %}value="{{ value }}"{% endif %}
+      {% if minlength %}minlength="{{ minlength }}"{% endif %}
       {% if min_length %}minlength="{{ min_length }}"{% endif %}
-      {% if required %}required aria-required="true"{% endif %}
+      {% if maxlength %}maxlength="{{ maxlength }}"{% endif %}
+      {% if inputmode %}inputmode="{{ inputmode }}"{% endif %}
+      {% if pattern %}pattern="{{ pattern }}"{% endif %}
+      {% if validation_message %}data-message-pattern="{{ validation_message }}"{% endif %}
+      {% if minlength_message %}data-message-minlength="{{ minlength_message }}"{% endif %}
+      {% if required %}{% if is_conditional %}data-required-when-active="true"{% else %}required aria-required="true"{% endif %}{% endif %}
       {% if described_by %}aria-describedby="{{ described_by }}"{% endif %}
       {% if error %}aria-invalid="true"{% endif %}
+      {% if is_conditional %}disabled{% endif %}
       {% if type == 'password' %}data-password-input{% endif %}
       {% if input_role %}data-{{ input_role }}{% endif %}
     >
@@ -32,6 +133,7 @@
         <span class="form-input__eye" aria-hidden="true"></span>
       </button>
     {% endif %}
-  </div>
-  {% if has_message %}<p class="form-input__message{% if error %} form-input__message--error{% endif %}" id="{{ message_id }}" data-form-input-message>{{ error|default(help) }}</p>{% endif %}
+    </div>
+  {% endif %}
+  {% if has_message %}<p class="form-input__message{% if error %} form-input__message--error{% endif %}" id="{{ message_id }}" data-form-input-message{% if message_role %} data-{{ message_role }}-message{% endif %}>{{ error|default(help) }}</p>{% endif %}
 </div>

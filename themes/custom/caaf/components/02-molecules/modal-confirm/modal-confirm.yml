@@ -1,12 +1,12 @@
-title: "Inicia sesión para continuar"
-text: "Para descargar este recurso debes iniciar sesión. Si aún no tienes cuenta, contacta a un asesor para solicitar acceso."
-icon_src: "https://i.postimg.cc/R0GqkMsj/fi-7304873.png"
+title: "¡Formulario enviado con éxito!"
+text: "Hemos recibido tu información correctamente. Pronto uno de nuestros asesores se pondrá en contacto contigo."
+icon_src: "https://i.postimg.cc/L82WXvTM/Vector.png"
 is_open: true
 close_button:
   label: "Cerrar modal"
 primary_button:
-  text: "Iniciar sesión"
+  text: "Volver al inicio"
   url: "#"
 secondary_button:
-  text: "Contactar asesor"
+  text: ""
   url: "#"
