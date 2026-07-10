@@ -4,3 +4,17 @@
  * @file
  * Functions to support theming.
  */
+
+/**
+ * Implements hook_form_FORM_ID_alter() for the password recovery form.
+ */
+function caaf_form_user_pass_alter(array &$form, \Drupal\Core\Form\FormStateInterface $form_state): void {
+  $form['#attributes']['class'][] = 'user-pass';
+  $form['name']['#type'] = 'email';
+  $form['name']['#title'] = t('Email');
+  $form['name']['#description'] = '';
+  $form['name']['#attributes']['autocomplete'] = 'email';
+  $form['name']['#attributes']['placeholder'] = t('correo@ejemplo.com');
+  $form['name']['#attributes']['inputmode'] = 'email';
+  $form['actions']['submit']['#value'] = t('Enviar enlace');
+}

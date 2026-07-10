@@ -5,6 +5,24 @@
 .form-input__control {
   position: relative;
 }
+.form-input__label {
+  align-items: center;
+  color: #2d3e50;
+  display: flex;
+  font-size: 14px;
+  font-weight: 600;
+  gap: 12px;
+  line-height: 1.25;
+}
+.form-input__label-icon {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  flex: 0 0 16px;
+  height: 16px;
+  width: 16px;
+}
 .form-input__field {
   background: #f2f6f9;
   border: 1px solid transparent;
@@ -50,6 +68,12 @@
 .form-input__icon--password {
   background-image: url("../../../assets/icons/login-password.svg");
 }
+.form-input__icon--email {
+  background-image: url("../../../assets/icons/login-user.svg");
+}
+.form-input__icon--lock {
+  background-image: url("../../../assets/icons/change-password-lock.svg");
+}
 .form-input__toggle {
   align-items: center;
   background: none;
@@ -86,10 +110,32 @@
 .form-input__toggle.is-visible .form-input__eye::after {
   opacity: 0;
 }
-.form-input__error {
-  color: #c92b3f;
+.form-input__message {
+  color: #646464;
   font-size: 13px;
   margin: 0;
+  min-height: 18px;
+}
+.form-input__message--error,
+.form-input__message.is-error {
+  color: #c92b3f;
+}
+.form-input--outlined {
+  gap: 14px;
+}
+.form-input--outlined .form-input__field {
+  background: #fff;
+  border-color: #e5e7eb;
+  border-radius: 14px;
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 400;
+  height: 50px;
+  padding-left: 16px;
+}
+.form-input--outlined.form-input--error .form-input__field,
+.form-input--outlined .form-input__field.is-invalid {
+  border-color: #c92b3f;
 }
 .visually-hidden {
   clip: rect(0, 0, 0, 0);

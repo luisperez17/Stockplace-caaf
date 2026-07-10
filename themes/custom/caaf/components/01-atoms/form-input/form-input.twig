@@ -1,9 +1,17 @@
 {% set input_id = id|default(name) %}
-{% set described_by = error ? input_id ~ '-error' : '' %}
-<div class="form-input{% if error %} form-input--error{% endif %}">
-  <label class="form-input__label visually-hidden" for="{{ input_id }}">{{ label }}</label>
+{% set message_id = input_id ~ '-message' %}
+{% set has_message = error or help or type == 'password' %}
+{% set described_by = has_message ? message_id : '' %}
+{% set input_classes = ['form-input'] %}
+{% if error %}{% set input_classes = input_classes|merge(['form-input--error']) %}{% endif %}
+{% if variant %}{% set input_classes = input_classes|merge(['form-input--' ~ variant]) %}{% endif %}
+<div class="{{ input_classes|join(' ') }}"{% if field_role %} data-{{ field_role }}-field{% endif %}>
+  <label class="form-input__label{% if label_hidden|default(true) %} visually-hidden{% endif %}" for="{{ input_id }}">
+    {% if icon and not label_hidden|default(true) %}<span class="form-input__label-icon form-input__icon--{{ icon }}" aria-hidden="true"></span>{% endif %}
+    <span>{{ label }}</span>
+  </label>
   <div class="form-input__control">
-    <span class="form-input__icon form-input__icon--{{ icon|default('user') }}" aria-hidden="true"></span>
+    {% if icon and label_hidden|default(true) %}<span class="form-input__icon form-input__icon--{{ icon }}" aria-hidden="true"></span>{% endif %}
     <input
       class="form-input__field"
       id="{{ input_id }}"
@@ -11,9 +19,13 @@
       type="{{ type|default('text') }}"
       placeholder="{{ placeholder|default(label) }}"
       autocomplete="{{ autocomplete|default('off') }}"
+      {% if value is defined %}value="{{ value }}"{% endif %}
+      {% if min_length %}minlength="{{ min_length }}"{% endif %}
       {% if required %}required aria-required="true"{% endif %}
-      {% if described_by %}aria-describedby="{{ described_by }}" aria-invalid="true"{% endif %}
+      {% if described_by %}aria-describedby="{{ described_by }}"{% endif %}
+      {% if error %}aria-invalid="true"{% endif %}
       {% if type == 'password' %}data-password-input{% endif %}
+      {% if input_role %}data-{{ input_role }}{% endif %}
     >
     {% if type == 'password' %}
       <button class="form-input__toggle" type="button" aria-label="Mostrar contraseña" aria-pressed="false" data-password-toggle>
@@ -21,5 +33,5 @@
       </button>
     {% endif %}
   </div>
-  {% if error %}<p class="form-input__error" id="{{ input_id }}-error">{{ error }}</p>{% endif %}
+  {% if has_message %}<p class="form-input__message{% if error %} form-input__message--error{% endif %}" id="{{ message_id }}" data-form-input-message>{{ error|default(help) }}</p>{% endif %}
 </div>

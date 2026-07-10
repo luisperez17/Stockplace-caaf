@@ -1,0 +1,14 @@
+{{ attach_library('caaf/password-recovery') }}
+{{ page.header }}
+<main class="password-recovery" role="main">
+  <a id="main-content" tabindex="-1"></a>
+  <div class="password-recovery__inner">
+    {% if page.status %}<div class="password-recovery__messages" role="alert">{{ page.status }}</div>{% endif %}
+    <div class="password-recovery__notice password-recovery__notice--error">
+      <h1>El enlace ya no está disponible</h1>
+      <p>Este enlace de recuperación venció o ya fue utilizado.</p>
+      <a class="password-recovery__button" href="{{ path('user.pass') }}">Solicitar un nuevo enlace</a>
+    </div>
+  </div>
+</main>
+{{ page.footer }}
